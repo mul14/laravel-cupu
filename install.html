@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Laravel Cupu</title>
+
+  <link rel="stylesheet" href="http://laravel-cupu.com/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://laravel-cupu.com/css/font-awesome.min.css">
+  <link rel="stylesheet" href="http://laravel-cupu.com/css/highlight.dark.css">
+  <link rel="stylesheet" href="http://laravel-cupu.com/css/main.css">
+</head>
+<body>
+
+  <header class="navbar navbar-default navbar-fixed-top">
+
+    <a class="navbar-brand" href="http://laravel-cupu.com/">
+      Laravel Cupu
+      <small class="hidden-xs hidden-sm">
+        
+      </small>
+    </a>
+
+    
+  </header>
+
+  <main class="container-fluid">
+    <div class="row">
+
+      
+      <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+        <ul class="nav nav-pills nav-stacked">
+                    <li class="">
+            <a href="http://laravel-cupu.com/index.html">
+              Home
+            </a>
+          </li>
+                    <li class="active">
+            <a href="http://laravel-cupu.com/install.html">
+              Instalasi
+            </a>
+          </li>
+                    <li class="">
+            <a href="http://laravel-cupu.com/authentication.html">
+              Autentikasi
+            </a>
+          </li>
+                    <li class="">
+            <a href="http://laravel-cupu.com/authorization.html">
+              Otoritasi
+            </a>
+          </li>
+                    <li class="">
+            <a href="http://laravel-cupu.com/form.html">
+              Form
+            </a>
+          </li>
+                    <li class="">
+            <a href="http://laravel-cupu.com/editor.html">
+              Editor & IDE
+            </a>
+          </li>
+                    <li class="">
+            <a href="http://laravel-cupu.com/shared-hosting.html">
+              Shared Hosting
+            </a>
+          </li>
+                    <li class="">
+            <a href="http://laravel-cupu.com/xampp.html">
+              XAMPP
+            </a>
+          </li>
+                    <li class="">
+            <a href="http://laravel-cupu.com/common-problem.html">
+              Masalah Umum
+            </a>
+          </li>
+                  </ul>
+
+      </nav>
+
+      
+      <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+        <h1 id="instalasi">Instalasi</h1>
+<p>Laravel dibangun dengan menggunakan Composer. Jadi Composer wajib ada di sistem anda. Silahkan download composer di <a href="http://getcomposer.org">http://getcomposer.org</a>.</p>
+<p>Anda bisa memilih salah satu cara instalasi berikut</p>
+<h2 id="install-dengan-composer">Install dengan composer</h2>
+<p>Gunakan perintah berikut pada Terminal atau Command Prompt anda.</p>
+<pre><code>composer create-project laravel/laravel [folder_anda]</code></pre>
+<p>Misalnya saya mau membuat suatu website dengan nama ngintip. Maka ketik di Terminal</p>
+<pre><code>composer create-project laravel/laravel ngintip</code></pre>
+<p>Bila anda lupa bagaimana cara menggunakan composer untuk membuat project Laravel, cukup ketik <code>composer</code>, maka akan muncul informasi bantuan. Disana anda bisa lihat ada perintah <code>create-project</code>. Gunakan </p>
+<pre><code>composer create-project --help</code></pre>
+<p>Untuk melihat informasi cara menggunakan perintah <code>create-project</code>. </p>
+<p>Anda juga bisa menyingkat perintah, cukup dengan</p>
+<pre><code>composer create</code></pre>
+<p>atau </p>
+<pre><code>composer cr</code></pre>
+<p>Composer akan memilih perintah yang paling dekat dan tidak ambigu.</p>
+<h2 id="install-dengan-laravel-installer">Install dengan Laravel Installer</h2>
+<p>Untuk menggunakan Laravel Installer, anda juga butuh composer. Mari kita install Laravel Installer</p>
+<pre><code>composer global require "laravel/installer=~1.1"</code></pre>
+<p>Setelah proses instalasi selesai, kita bisa gunakan perintah <code>laravel</code> di Terminal. Gunakan command <code>new</code> untuk membuat project Laravel yang baru.</p>
+<pre><code>laravel new [folder_anda]</code></pre>
+<p>Pada dasarnya Laravel installer ini akan men-download file dari <a href="http://cabinet.laravel.com/latest.zip">http://cabinet.laravel.com/latest.zip</a>, lalu di-extract dan jalankan composer script.</p>
+<h2 id="install-dengan-cara-download-released-file">Install dengan cara download released file</h2>
+<p>Anda bisa download file yang dirilis di GitHub <a href="https://github.com/laravel/laravel/releases">https://github.com/laravel/laravel/releases</a>. Di sana anda bisa memilih download file zip atau tarball.</p>
+<p>Setelah download file ini, anda tetap harus menjalankan <code>composer install</code> untuk men-download Laravel core. Karena sebenarnya yang anda download di GitHub itu adalah project skeleton-nya Laravel, tanpa folder <code>vendor</code>.</p>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container-fluid">
+      <p class="text-muted">
+        Laravel Cupu 2015
+      </p>
+    </div>
+  </footer>
+
+  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+  <script>
+    $(function() {
+      $("section>h1").wrap('<div class="page-header" />');
+      hljs.initHighlightingOnLoad();
+    });
+  </script>
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-68122256-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+</body>
+</html>

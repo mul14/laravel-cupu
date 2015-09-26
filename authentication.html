@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Laravel Cupu</title>
+
+  <link rel="stylesheet" href="http://laravel-cupu.com/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://laravel-cupu.com/css/font-awesome.min.css">
+  <link rel="stylesheet" href="http://laravel-cupu.com/css/highlight.dark.css">
+  <link rel="stylesheet" href="http://laravel-cupu.com/css/main.css">
+</head>
+<body>
+
+  <header class="navbar navbar-default navbar-fixed-top">
+
+    <a class="navbar-brand" href="http://laravel-cupu.com/">
+      Laravel Cupu
+      <small class="hidden-xs hidden-sm">
+        
+      </small>
+    </a>
+
+    
+  </header>
+
+  <main class="container-fluid">
+    <div class="row">
+
+      
+      <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+        <ul class="nav nav-pills nav-stacked">
+                    <li class="">
+            <a href="http://laravel-cupu.com/index.html">
+              Home
+            </a>
+          </li>
+                    <li class="">
+            <a href="http://laravel-cupu.com/install.html">
+              Instalasi
+            </a>
+          </li>
+                    <li class="active">
+            <a href="http://laravel-cupu.com/authentication.html">
+              Autentikasi
+            </a>
+          </li>
+                    <li class="">
+            <a href="http://laravel-cupu.com/authorization.html">
+              Otoritasi
+            </a>
+          </li>
+                    <li class="">
+            <a href="http://laravel-cupu.com/form.html">
+              Form
+            </a>
+          </li>
+                    <li class="">
+            <a href="http://laravel-cupu.com/editor.html">
+              Editor & IDE
+            </a>
+          </li>
+                    <li class="">
+            <a href="http://laravel-cupu.com/shared-hosting.html">
+              Shared Hosting
+            </a>
+          </li>
+                    <li class="">
+            <a href="http://laravel-cupu.com/xampp.html">
+              XAMPP
+            </a>
+          </li>
+                    <li class="">
+            <a href="http://laravel-cupu.com/common-problem.html">
+              Masalah Umum
+            </a>
+          </li>
+                  </ul>
+
+      </nav>
+
+      
+      <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+        <h1 id="autentikasi">Autentikasi</h1>
+<h2 id="laravel-4x">Laravel 4.x</h2>
+<p>Di <a href="http://laravel.com/docs/4.2/security">Laravel 4</a>, anda dapat dengan mudah membuat login dengan menambahkan beberapa code. Kira-kira seperti ini di <code>app/routes.php</code></p>
+<pre><code class="language-php">Route::get('login', function()
+{
+    return View::make('login');
+});
+
+Route::post('login', function()
+{
+    $credentials = Input::only('email', 'password');
+    $remember = Input::get('remember');
+
+    if (Auth::attempt($credentials, $remember))
+    {
+        return Redirect::intended('/');
+    }
+
+    return Redirect::back()-&gt;withMessage('Invalid Credentials');
+});</code></pre>
+<h2 id="laravel-50">Laravel 5.0</h2>
+<p>Jika anda menggunakan <a href="http://laravel.com/docs/5.0/authentication">Laravel 5.0</a>, fitur Autentikasi bisa anda gunakan <em>out-of-the-box</em>. Cukup masuk ke <a href="http://localhost:8000/auth/login">http://localhost:8000/auth/login</a>. Begitu juga dengan registrasi anda bisa masuk ke <a href="http://localhost:8000/auth/register">http://localhost:8000/auth/register</a>.</p>
+<h2 id="laravel-51-lts">Laravel 5.1 (LTS)</h2>
+<p>Pada <a href="http://laravel.com/docs/5.1/authentication">Laravel 5.1</a>, view, routes sudah dibuang dari 5.0. Tapi Controller dan trait untuk authentikasi sudah disiapkan. Untuk menggunakannya tambahkan code berikut pada <code>app/Http/routes.php</code></p>
+<pre><code class="language-php">Route::controller('auth', 'Auth\AuthController');
+Route::controller('password', 'Auth\PasswordController');</code></pre>
+<p>Anda bisa buka url berikut </p>
+<ul>
+<li><a href="http://localhost:8000/auth/login">http://localhost:8000/auth/login</a> (GET, POST) - Untuk login </li>
+<li><a href="http://localhost:8000/auth/register">http://localhost:8000/auth/register</a> (GET, POST) - Untuk registrasi</li>
+<li><a href="http://localhost:8000/password/email">http://localhost:8000/password/email</a> (GET, POST) - Request password reset</li>
+<li><a href="http://localhost:8000/password/reset">http://localhost:8000/password/reset</a> (GET, POST) - Untuk reset password</li>
+</ul>
+<p>Setelah routes anda tambahkan, jangan lupa buat view-nya.</p>
+<p>Ini contoh view untuk login di <code>resources/views/auth/login.blade.php</code></p>
+<pre><code class="language-php">&lt;form method="POST" action="/auth/login"&gt;
+    {!! csrf_field() !!}
+
+    &lt;div&gt;
+        Email
+        &lt;input type="email" name="email" value="{{ old('email') }}"&gt;
+    &lt;/div&gt;
+
+    &lt;div&gt;
+        Password
+        &lt;input type="password" name="password" id="password"&gt;
+    &lt;/div&gt;
+
+    &lt;div&gt;
+        &lt;input type="checkbox" name="remember"&gt; Remember Me
+    &lt;/div&gt;
+
+    &lt;div&gt;
+        &lt;button type="submit"&gt;Login&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+<p>Untuk registrasi, tambahkan code berikut pada <code>resources/views/auth/register.blade.php</code></p>
+<pre><code class="language-php">&lt;form method="POST" action="/auth/register"&gt;
+    {!! csrf_field() !!}
+
+    &lt;div&gt;
+        Name
+        &lt;input type="text" name="name" value="{{ old('name') }}"&gt;
+    &lt;/div&gt;
+
+    &lt;div&gt;
+        Email
+        &lt;input type="email" name="email" value="{{ old('email') }}"&gt;
+    &lt;/div&gt;
+
+    &lt;div&gt;
+        Password
+        &lt;input type="password" name="password"&gt;
+    &lt;/div&gt;
+
+    &lt;div&gt;
+        Confirm Password
+        &lt;input type="password" name="password_confirmation"&gt;
+    &lt;/div&gt;
+
+    &lt;div&gt;
+        &lt;button type="submit"&gt;Register&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+<p>Class <code>Auth\AuthController</code> by default akan melakukan pengecekan authentikasi dengan menggunakan email dan password. Jika anda ingin menggunakan kombinasi antara <code>user_id</code> dan password tambahkan property berikut pada <code>app/Http/Auth/AuthController.php</code>.</p>
+<pre><code>protected $username = 'user_id';</code></pre>
+<h3 id="redirect">Redirect</h3>
+<p>Khusus di <a href="http://laravel.com/docs/5.1/authentication#included-authenticating">Laravel 5.1</a>, jika menggunakan <code>Auth\AuthController</code> default maka anda bisa mengubah redirect url. Tambahkan property berikut pada <code>app/Http/Auth/AuthController.php</code></p>
+<pre><code class="language-php">/** 
+ * Setelah berhasil login, user akan diarahkan kesini
+ */ 
+protected $redirectPath = '/dashboard';
+
+/** 
+ * Ini juga berfungsi sama dengan $redirectPath.
+ * Bila $redirectPath telah di-set, maka ini akan diabaikan.
+ */ 
+protected $redirectTo = '/dashboard';
+
+/** 
+ * Jika user belum login, lalu mengakses halaman yang harus
+ * login terlebih dahulu, maka akan di-redirect kesini
+ */ 
+protected $loginPath = '/login';
+
+/** 
+ * Setelah logout, user akan diarahkan kesini
+ */ 
+protected $redirectAfterLogout = '/';</code></pre>
+<h3 id="throttles-logins">Throttles Logins</h3>
+<p>Jika user mencoba beberapa kali login dan gagal sebanyak 5 kali, maka fitur login tidak akan bisa digunakan selama 60 detik. Untuk mengubah behaviour ini tambahkan di <code>app/Http/Auth/AuthController.php</code> property berikut</p>
+<pre><code class="language-php">protected $maxLoginAttempts = 10;
+
+protected $lockoutTime = 120;</code></pre>
+<h3 id="authentikasi-manual">Authentikasi Manual</h3>
+<p>Jika anda ingin menggunakan cara manual untuk authentikasi, anda bisa mengganti routing dan controller default. Contoh pada <code>app/Http/routes.php</code></p>
+<pre><code class="language-php">Route::get('login', function()
+{
+    return view('login');
+});
+
+Route::post('login', function()
+{
+    $credentials = request()-&gt;only('email', 'password');
+    $remember = request('remember');
+
+    if (auth()-&gt;attempt($credentials, $remember))
+    {
+        return redirect()-&gt;intended('/');
+    }
+
+    return redirect()-&gt;back()-&gt;withMessage('Invalid Credentials');
+});</code></pre>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container-fluid">
+      <p class="text-muted">
+        Laravel Cupu 2015
+      </p>
+    </div>
+  </footer>
+
+  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+  <script>
+    $(function() {
+      $("section>h1").wrap('<div class="page-header" />');
+      hljs.initHighlightingOnLoad();
+    });
+  </script>
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-68122256-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+</body>
+</html>

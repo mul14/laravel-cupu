@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Laravel Cupu</title>
+
+  <link rel="stylesheet" href="http://laravel-cupu.com/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://laravel-cupu.com/css/font-awesome.min.css">
+  <link rel="stylesheet" href="http://laravel-cupu.com/css/highlight.dark.css">
+  <link rel="stylesheet" href="http://laravel-cupu.com/css/main.css">
+</head>
+<body>
+
+  <header class="navbar navbar-default navbar-fixed-top">
+
+    <a class="navbar-brand" href="http://laravel-cupu.com/">
+      Laravel Cupu
+      <small class="hidden-xs hidden-sm">
+        
+      </small>
+    </a>
+
+    
+  </header>
+
+  <main class="container-fluid">
+    <div class="row">
+
+      
+      <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+        <ul class="nav nav-pills nav-stacked">
+                    <li class="">
+            <a href="http://laravel-cupu.com/index.html">
+              Home
+            </a>
+          </li>
+                    <li class="">
+            <a href="http://laravel-cupu.com/install.html">
+              Instalasi
+            </a>
+          </li>
+                    <li class="">
+            <a href="http://laravel-cupu.com/authentication.html">
+              Autentikasi
+            </a>
+          </li>
+                    <li class="">
+            <a href="http://laravel-cupu.com/authorization.html">
+              Otoritasi
+            </a>
+          </li>
+                    <li class="">
+            <a href="http://laravel-cupu.com/form.html">
+              Form
+            </a>
+          </li>
+                    <li class="">
+            <a href="http://laravel-cupu.com/editor.html">
+              Editor & IDE
+            </a>
+          </li>
+                    <li class="">
+            <a href="http://laravel-cupu.com/shared-hosting.html">
+              Shared Hosting
+            </a>
+          </li>
+                    <li class="active">
+            <a href="http://laravel-cupu.com/xampp.html">
+              XAMPP
+            </a>
+          </li>
+                    <li class="">
+            <a href="http://laravel-cupu.com/common-problem.html">
+              Masalah Umum
+            </a>
+          </li>
+                  </ul>
+
+      </nav>
+
+      
+      <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+        <h1 id="xampp">XAMPP</h1>
+<h2 id="bagaimana-cara-menghilangkan">Bagaimana cara menghilangkan <code>public</code>?</h2>
+<h3 id="overview">Overview</h3>
+<p>Pertanyaan ini sering dilontarkan pengguna XAMPP. XAMPP pada dasarnya menggunakan Apache HTTPD sebagai web server-nya. Untuk development, sebenarnya anda tidak harus menggunakan Apache HTTPD. Anda bisa menggunakan php built-in web server untuk development. Detailnya anda bisa baca artikel di blog saya tentang <a href="https://mul14.wordpress.com/2015/05/01/you-dont-need-xampp/">You don't need XAMPP</a>.</p>
+<p>Laravel meletakkan file <code>index.php</code>, file yang akan dibaca pertama kali oleh web server di folder <code>public</code>. Itulah mengapa, ketika menggunakan web server dengan konfigurasi default XAMPP, anda perlu menambahkan <code>public</code>.</p>
+<p>Sebenarnya ini bukan hanya dilakukan oleh Laravel. Ini juga dilakukan oleh PHP Framework lain seperti Symfony 2, CakePHP, Yii.</p>
+<ul>
+<li>
+<p>CakePHP meletakkan file <code>index.php</code> pada folder <code>webroot</code> <a href="https://github.com/cakephp/app/tree/master/webroot">https://github.com/cakephp/app/tree/master/webroot</a></p>
+</li>
+<li>
+<p>Yii 2 Basic meletakkan file <code>index.php</code> pada folder <code>web</code> <a href="https://github.com/yiisoft/yii2-app-basic/tree/master/web">https://github.com/yiisoft/yii2-app-basic/tree/master/web</a></p>
+</li>
+<li>
+<p>Yii 2 Advanced meletakkan file <code>index.php</code> pada folder <code>frontend/web</code> dan <code>backend/web</code> <a href="https://github.com/yiisoft/yii2-app-advanced/tree/master/frontend/web">https://github.com/yiisoft/yii2-app-advanced/tree/master/frontend/web</a>, <a href="https://github.com/yiisoft/yii2-app-advanced/tree/master/backend/web">https://github.com/yiisoft/yii2-app-advanced/tree/master/backend/web</a></p>
+</li>
+<li>Symfony 2 akan membaca file <code>app.php</code> pertama kali pada folder <code>web</code> <a href="https://github.com/symfony/symfony-standard/tree/2.8/web">https://github.com/symfony/symfony-standard/tree/2.8/web</a></li>
+</ul>
+<h3 id="solusi-1---gunakan-artisan-serve">Solusi #1 - Gunakan Artisan Serve</h3>
+<p>Gunakan perintah <code>php artisan serve</code> dan buka <a href="http://localhost:8000">http://localhost:8000</a></p>
+<p>Port 8000 digunakan karena port 1-1023 membutuhkan privileges di level OS. By default Apache HTTPD menggunakan port 80. Itulah mengapa jika anda menggunakan Windows, setiapkali mengaktifkan web server, anda masuk ke <a href="https://en.wikipedia.org/wiki/User_Account_Control">UAC</a>. Dan jika menggunakan XAMPP for Linux anda juga harus menggunakan <code>sudo</code>.</p>
+<h3 id="solusi-2---pindahkan-folder-public">Solusi #2 - Pindahkan folder public</h3>
+<p>Pindahkan isi folder <code>public</code> ke tempat lain.</p>
+<pre><code>D:
+└── xampp
+    └── htdocs
+        └── aplikasiku
+            ├── app
+            ├── bootstrap
+            ├── config
+            ├── ...
+            └── public</code></pre>
+<p>Keluarkan aplikasiku ke tempat lain.</p>
+<pre><code>D:
+├── xampp
+|   └── htdocs
+└── aplikasiku
+    ├── app
+    ├── bootstrap
+    ├── config
+    ├── ...
+    └── public</code></pre>
+<p>Masukkan public ke htdocs</p>
+<pre><code>D:
+├── xampp
+|   └── htdocs
+|       └── public
+└── aplikasiku
+    ├── app
+    ├── bootstrap
+    ├── config
+    └── ...</code></pre>
+<p>Lalu ubah file isi <code>public/index.php</code></p>
+<pre><code class="language-php">require __DIR__.'/../bootstrap/autoload.php';
+// MENJADI
+require 'd:/aplikasiku/bootstrap/autoload.php';
+
+$app = require_once __DIR__.'/../bootstrap/app.php';
+// MENJADI
+$app = require_once 'd:/aplikasiku/bootstrap/app.php';</code></pre>
+<p>Sekarang anda bisa buka <a href="http://localhost/public">http://localhost/public</a>.</p>
+<p>Lalu ubah nama <code>public</code> menjadi <code>aplikasiku</code>, dan sekarang kita bisa buka <a href="http://localhost/aplikasiku">http://localhost/aplikasiku</a></p>
+<h3 id="solusi-3---gunakan-symlink">Solusi #3 - Gunakan Symlink</h3>
+<p>Anda menggunakan *nix? Well, anda lebih beruntung daripada pengguna Windows. Karena kita bisa menggunakan symlink.</p>
+<p>Saya asumsikan project anda ada di <code>~/Code/aplikasiku</code>, dan anda menggunakan XAMPP for Linux. Lokasi <code>htdocs</code> pada XAMPP for Linux ada di <code>/opt/lampp/htdocs</code>. Mari kita buat symlink</p>
+<pre><code>ln -s ~/Code/aplikasiku/public /opt/lampp/htdocs/aplikasiku</code></pre>
+<h3 id="solusi-4---gunakan-homestead">Solusi #4 - Gunakan Homestead</h3>
+<p>Silahkan baca dokumentasi <a href="http://laravel.com/docs/master/homestead">http://laravel.com/docs/master/homestead</a></p>
+<h3 id="solusi-5---apache-httpd-virtual-host">Solusi #5 - Apache HTTPD Virtual Host</h3>
+<p>Coming Soon</p>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container-fluid">
+      <p class="text-muted">
+        Laravel Cupu 2015
+      </p>
+    </div>
+  </footer>
+
+  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+  <script>
+    $(function() {
+      $("section>h1").wrap('<div class="page-header" />');
+      hljs.initHighlightingOnLoad();
+    });
+  </script>
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-68122256-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+</body>
+</html>
