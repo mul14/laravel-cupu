@@ -1,0 +1,51 @@
+template:
+    # Name of the directory containing the website template (default is "website")
+    directory: website
+    # Name of the index file (default is "README.md")
+    index: index.md
+
+# The left menu bar
+menu:
+    items:
+        home:
+            text: Home
+            relativeUrl: index.html
+        install:
+            text: Instalasi
+            relativeUrl: install.html
+        authentication:
+            text: Autentikasi
+            relativeUrl: authentication.html
+        authorization:
+            text: Otoritasi
+            relativeUrl: authorization.html
+        form:
+            text: Form
+            relativeUrl: form.htm
+        editor:
+            text: Editor & IDE
+            relativeUrl: editor.html
+        shared-hosting:
+            text: Shared Hosting
+            relativeUrl: shared-hosting.html
+        xampp:
+            text: XAMPP
+            relativeUrl: xampp.html
+        common-problem:
+            text: Masalah Umum
+            relativeUrl: common-problem.html
+
+# List of directories to exclude from the processing (default contains "vendor" and "website")
+# Paths are relative to the repository root
+exclude:
+    - vendor
+    - website
+    - some/dir
+
+# Any variable you put in this file is also available in the Twig layouts:
+title: Laravel Cupu
+subTitle:
+
+# Base URL of the published website (no "/" at the end!)
+# You are advised to set and use this variable to write your links in the HTML layouts
+baseUrl: http://laravel-cupu.com
