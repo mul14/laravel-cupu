@@ -1,3 +1,7 @@
+---
+currentMenu: home
+---
+
 Selamat datang di Laravel Cupu!
 ====================================
 

@@ -21,7 +21,7 @@ menu:
             relativeUrl: authorization.html
         form:
             text: Form
-            relativeUrl: form.htm
+            relativeUrl: form.html
         editor:
             text: Editor & IDE
             relativeUrl: editor.html

@@ -1,3 +1,7 @@
+---
+currentMenu: shared-hosting
+---
+
 # Shared Hosting
 
 ## Minimum Requirement

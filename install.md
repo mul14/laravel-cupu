@@ -1,3 +1,7 @@
+---
+currentMenu: install
+---
+
 # Instalasi
 
 Laravel dibangun dengan menggunakan Composer. Jadi Composer wajib ada di sistem anda. Silahkan download composer di http://getcomposer.org.
@@ -58,6 +62,6 @@ Pada dasarnya Laravel installer ini akan men-download file dari http://cabinet.l
 
 ## Install dengan cara download released file
 
-Anda bisa juga download file zip langsung dari GitHub https://github.com/laravel/laravel/releases. Di sana anda bisa memilih download file zip atau tarball.
+Anda bisa download file yang dirilis di GitHub https://github.com/laravel/laravel/releases. Di sana anda bisa memilih download file zip atau tarball.
 
 Setelah download file ini, anda tetap harus menjalankan `composer install` untuk men-download Laravel core. Karena sebenarnya yang anda download di GitHub itu adalah project skeleton-nya Laravel, tanpa folder `vendor`.

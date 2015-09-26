@@ -1,3 +1,7 @@
+---
+currentMenu: editor
+---
+
 Editor & IDE
 ============
 
