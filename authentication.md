@@ -125,19 +125,19 @@ Khusus di [Laravel 5.1](http://laravel.com/docs/5.1/authentication#included-auth
 /** 
  * Setelah berhasil login, user akan diarahkan kesini
  */ 
-protected $redirectPath = '/dashboard';
+protected $redirectPath = '/home';
 
 /** 
  * Ini juga berfungsi sama dengan $redirectPath.
  * Bila $redirectPath telah di-set, maka ini akan diabaikan.
  */ 
-protected $redirectTo = '/dashboard';
+protected $redirectTo = '/home';
 
 /** 
  * Jika user belum login, lalu mengakses halaman yang harus
  * login terlebih dahulu, maka akan di-redirect kesini
  */ 
-protected $loginPath = '/login';
+protected $loginPath = '/auth/login';
 
 /** 
  * Setelah logout, user akan diarahkan kesini
