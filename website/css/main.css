@@ -61,7 +61,7 @@ header.navbar {
 }
 .navbar .navbar-brand {
     font-size: 28px;
-    height: auto;
+    height: 80px; /* Di Chrome Version 45.0.2454.101 (64-bit) tampilan ini kacau */
     line-height: 40px;
     margin-left: 20px;
 }
