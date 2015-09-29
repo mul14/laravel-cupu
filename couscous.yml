@@ -19,6 +19,9 @@ menu:
         authorization:
             text: Otoritasi
             relativeUrl: authorization.html
+        crud:
+            text: Crud
+            relativeUrl: crud.html
         form:
             text: Form
             relativeUrl: form.html
