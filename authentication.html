@@ -216,9 +216,30 @@ Route::post('login', function()
 
     return redirect()-&gt;back()-&gt;withMessage('Invalid Credentials');
 });</code></pre>
+<h3 id="md5sha1-password">MD5/SHA1 Password</h3>
+<p>Kadangkala saat migrasi dari sistem yang lama ke Laravel, kita butuh login dengan password yang masih menggunakan MD5/SHA1. Karena suatu hal, kita tidak bisa mengubah password lama menggunakan bcrypt bawaan Laravel. </p>
+<p>Bagaimana caranya menggunakan MD5/SHA1? Cara termudah adalah menggunakan autentikasi manual seperti di atas.</p>
+<pre><code class="language-php">Route::post('login', function() {
 
-                <div id="disqus_thread"></div>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    $email    = request('email');
+    $password = request('password');
+    $remember = request('remember');
+
+    $user = App\User::whereEmail($email)
+                    -&gt;wherePassword( md5($password) )
+                    -&gt;first();
+
+    if ($user) {
+        auth()-&gt;login($user, $remember);
+
+        return redirect()-&gt;intended('/');
+    }
+
+    return redirect()-&gt;back()-&gt;withMessage('Invalid Credentials');
+});</code></pre>
+
+                  <div id="disqus_thread"></div>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
               </section>
 
     </div>
