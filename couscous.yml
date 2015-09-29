@@ -20,7 +20,7 @@ menu:
             text: Otoritasi
             relativeUrl: authorization.html
         crud:
-            text: Crud
+            text: CRUD
             relativeUrl: crud.html
         form:
             text: Form
