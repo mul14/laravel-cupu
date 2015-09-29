@@ -44,6 +44,7 @@ Transformation
 {
     "username"   : "mul14",
     "name"       : "Mulia Arifandi Nasution",
+    "email"      : "mul14@ganteng.com",
     "age"        : "14",
     "last_login" : "2015-12-13 12:34:56",
     "created_at" : "2015-08-14 11:22:33",
@@ -63,7 +64,7 @@ Route::get('user', function($id) {
         return [
             'name'       => $u->name,
             'username'   => $u->username,
-            'email'      => $u->email,
+            'email'      => str_replace('@', '[at]', $u->email),
             'age'        => (int) $u->age, // Integer type casting 
             'last_login' => $u->last_login->diffForHuman(),
         ];
@@ -81,7 +82,7 @@ Sekarang data yang tampil akan menjadi seperti ini
 {
     "name"       : "Mulia Arifandi Nasution",
     "username"   : "mul14",
-    "email"      : "mul14@ganteng.com",
+    "email"      : "mul14[at]ganteng.com",
     "age"        : 14,
     "last_login" : "4 months ago"
 }
