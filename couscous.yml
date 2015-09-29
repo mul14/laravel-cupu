@@ -22,6 +22,9 @@ menu:
         form:
             text: Form
             relativeUrl: form.html
+        rest-api:
+            text: REST API
+            relativeUrl: rest-api.html
         editor:
             text: Editor & IDE
             relativeUrl: editor.html
