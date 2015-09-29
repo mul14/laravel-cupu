@@ -34,6 +34,12 @@ menu:
         xampp:
             text: XAMPP
             relativeUrl: xampp.html
+        elixir:
+            text: Elixir
+            relativeUrl: elixir.html
+        excel:
+            text: Excel
+            relativeUrl: excel.html
         common-problem:
             text: Masalah Umum
             relativeUrl: common-problem.html
