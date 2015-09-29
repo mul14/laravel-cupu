@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Laravel Cupu</title>
+
+  <link rel="stylesheet" href="http://laravel-cupu.com/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://laravel-cupu.com/css/font-awesome.min.css">
+  <link rel="stylesheet" href="http://laravel-cupu.com/css/highlight.dark.css">
+  <link rel="stylesheet" href="http://laravel-cupu.com/css/main.css">
+</head>
+<body>
+
+  <header class="navbar navbar-default navbar-fixed-top">
+
+    <a class="navbar-brand" href="http://laravel-cupu.com/">
+      Laravel Cupu
+      <small class="hidden-xs hidden-sm">
+        
+      </small>
+    </a>
+
+    
+  </header>
+
+  <main class="container-fluid">
+    <div class="row">
+
+      
+      <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+        <ul class="nav nav-pills nav-stacked">
+                    <li class="">
+            <a href="http://laravel-cupu.com/index.html">
+              Home
+            </a>
+          </li>
+                    <li class="">
+            <a href="http://laravel-cupu.com/install.html">
+              Instalasi
+            </a>
+          </li>
+                    <li class="active">
+            <a href="http://laravel-cupu.com/authentication.html">
+              Autentikasi
+            </a>
+          </li>
+                    <li class="">
+            <a href="http://laravel-cupu.com/authorization.html">
+              Otoritasi
+            </a>
+          </li>
+                    <li class="">
+            <a href="http://laravel-cupu.com/crud.html">
+              CRUD
+            </a>
+          </li>
+                    <li class="">
+            <a href="http://laravel-cupu.com/form.html">
+              Form
+            </a>
+          </li>
+                    <li class="">
+            <a href="http://laravel-cupu.com/rest-api.html">
+              REST API
+            </a>
+          </li>
+                    <li class="">
+            <a href="http://laravel-cupu.com/editor.html">
+              Editor & IDE
+            </a>
+          </li>
+                    <li class="">
+            <a href="http://laravel-cupu.com/shared-hosting.html">
+              Shared Hosting
+            </a>
+          </li>
+                    <li class="">
+            <a href="http://laravel-cupu.com/xampp.html">
+              XAMPP
+            </a>
+          </li>
+                    <li class="">
+            <a href="http://laravel-cupu.com/elixir.html">
+              Elixir
+            </a>
+          </li>
+                    <li class="">
+            <a href="http://laravel-cupu.com/excel.html">
+              Excel
+            </a>
+          </li>
+                    <li class="">
+            <a href="http://laravel-cupu.com/common-problem.html">
+              Masalah Umum
+            </a>
+          </li>
+                  </ul>
+
+      </nav>
+
+      
+      <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+        <h1 id="crud---query-builder">CRUD - Query Builder</h1>
+<p>Untuk melakukan proses CRUD di Laravel sangat mudah. Pertama hal yang perlu kita
+persiapkan adalah konfigurasi database. Anda bisa edit file <code>.env</code> atau edit
+file <code>config/database.php</code>. Sesuaikan konfigurasi dengan database anda.</p>
+<p>Setelah konfigurasi selesai, anda bisa buat table baru dengan menggunakan
+database client seperti PhpMyAdmin, SequelPro, pgAdmin, Chrome MySQL Admin, dll.
+Atau anda juga bisa membuat migration.</p>
+<p>Pada contoh disini saya menggunakan migration bawaan Laravel yang akan membuat
+table <code>users</code>. Setelah konfigurasi database, jalankan artisan.</p>
+<pre><code class="language-bash">php artisan migrate</code></pre>
+<p>Setelah itu, anda bisa buat routing baru. Misalnya</p>
+<pre><code class="language-php">Route::get('user', function(){
+
+    // Code operasi CRUD disini
+
+});</code></pre>
+<h2 id="">(<strong>C</strong>)reate</h2>
+<p>Memasukkan data baru ke database.</p>
+<pre><code class="language-php">DB::table('users')-&gt;insert([
+    'name' =&gt; 'kumis',
+    'email' =&gt; 'kumis@example.com',
+    'password' =&gt; bcrypt('p4$sw0Rd'),
+    'created_at' =&gt; Carbon\Carbon::now(),
+    'updated_at' =&gt; Carbon\Carbon::now(),
+]);
+
+// Sama dengan
+// INSERT INTO `users` (name, email, password, created_at, updated_at)
+// VALUES ('Kumis', 'kumis@example.com', 'password', NOW(), NOW());</code></pre>
+<p>Karena kita tidak menggunakan Eloquent, data <code>created_at</code> dan <code>updated_at</code> harus
+kita masukkan secara manual.</p>
+<h3 id="batch-insert---memasukkan-beberapa-data-baru-sekaligus">Batch insert - Memasukkan beberapa data baru sekaligus</h3>
+<pre><code class="language-php">$users = [
+    [
+        'name' =&gt; 'Jenggot',
+        'email' =&gt; 'jenggot@example.com',
+        'password' =&gt; bcrypt('p4$sw0Rd'),
+        'created_at' =&gt; Carbon\Carbon::now(),
+        'updated_at' =&gt; Carbon\Carbon::now(),
+    ],
+    [
+        'name' =&gt; 'Jambang',
+        'email' =&gt; 'jambang@example.com',
+        'password' =&gt; bcrypt('p4$sw0Rd'),
+        'created_at' =&gt; Carbon\Carbon::now(),
+        'updated_at' =&gt; Carbon\Carbon::now(),
+    ],
+    [
+        'name' =&gt; 'alis',
+        'email' =&gt; 'alis@example.com',
+        'password' =&gt; bcrypt('p4$sw0Rd'),
+        'created_at' =&gt; Carbon\Carbon::now(),
+        'updated_at' =&gt; Carbon\Carbon::now(),
+    ],
+];
+
+DB::table('users')-&gt;insert($users);
+
+// Sama dengan
+// INSERT INTO `users` (name, email, password, created_at, updated_at)
+// VALUES
+// ('Jenggot', 'jenggot@example.com', 'password', NOW(), NOW()),
+// ('Jambang', 'jambang@example.com', 'password', NOW(), NOW()),
+// ('Alis', 'alis@example.com', 'password', NOW(), NOW());</code></pre>
+<h2 id="-1">(<strong>R</strong>)ead</h2>
+<h3 id="mengambil-semua-data">Mengambil semua data</h3>
+<pre><code class="language-php">return DB::table('users')-&gt;all();
+
+// Sama dengan
+// SELECT * FROM `users`;</code></pre>
+<blockquote>
+<p>Semua collection atau array yang di-&quot;return&quot; dari suatu routing, otomatis akan
+diubah menjadi JSON.</p>
+</blockquote>
+<h3 id="where---and">WHERE - AND</h3>
+<pre><code class="language-php">    return DB::table('users')
+             -&gt;where('name', 'kumis')
+             -&gt;where('email', 'kumis@example.com')
+             -&gt;get();
+
+    // Sama dengan
+    // SELECT * FROM `users`
+    // WHERE name = 'kumis' AND email = 'kumis@example.com';</code></pre>
+<h3 id="where---or">WHERE - OR</h3>
+<pre><code class="language-php">    return DB::table('users')
+             -&gt;where('name', 'kumis')
+             -&gt;orWhere('name', 'jenggot')
+             -&gt;get();
+
+    // Sama dengan
+    // SELECT * FROM `users`
+    // WHERE name = 'kumis' OR name = 'jenggot';</code></pre>
+<h3 id="where---like">WHERE - LIKE</h3>
+<pre><code class="language-php">return DB::table('users')
+         -&gt;where('name', 'LIKE', '%j%')
+         -&gt;get();
+
+// Sama dengan
+// SELECT * FROM `users`
+// WHERE name LIKE '%j%';</code></pre>
+<h2 id="-2">(<strong>U</strong>)pdate</h2>
+<p>Coming soon</p>
+<h2 id="-3">(<strong>D</strong>)elete</h2>
+<pre><code class="language-php">DB::table('users')
+  -&gt;where('id', 1)
+  -&gt;delete();
+
+// Sama dengan
+// DELETE FROM `users` WHERE id = '1';</code></pre>
+
+                  <div id="disqus_thread"></div>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+              </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container-fluid">
+      <p class="text-muted">
+        Laravel Cupu 2015
+      </p>
+    </div>
+  </footer>
+
+  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+  <script>
+    $(function() {
+      $("section>h1").wrap('<div class="page-header" />');
+      hljs.initHighlightingOnLoad();
+    });
+  </script>
+
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES * * */
+      var disqus_shortname = 'laravel-cupu';
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-68122256-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+</body>
+</html>
